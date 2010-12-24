@@ -1,0 +1,294 @@
+on init
+## hopemini@lge.com, 2009-12-01
+## modify by hopemini@lge.com, 2009-12-06, QCT
+
+## LGE_CHANGE_S [jihoon.lee@lge.com] 2010-02-03, LG_FW_ERS 
+##if defined (CONFIG_MACH_MSM7X27_ALOHAV) || defined (LG_FW_ERS)
+    mkdir /data/data/com.lge.ers
+    mkdir /data/data/com.lge.ers/android
+    mkdir /data/data/com.lge.ers/kernel
+    mkdir /data/data/com.lge.ers/arm9
+    chmod 0777 /data/data/com.lge.ers/android
+    chmod 0777 /data/data/com.lge.ers/kernel
+    chmod 0777 /data/data/com.lge.ers/arm9
+##endif /*LG_FW_ERS*/
+## LGE_CHANGE_E [jihoon.lee@lge.com] 2010-02-03, LG_FW_ERS 
+
+# Disable cursor blink of fb console
+    write /sys/devices/virtual/graphics/fbcon/cursor_blink 0
+
+#10.02.27 changed by hd.mo@lge.com-----
+    #create arcsoft dirs if not exist
+    mkdir /data/arcsoft 0770 lgdrm lgdrm_acc
+    chmod 0770 /data/arcsoft/*
+    #END -- create the folder 
+
+on boot
+# unmap left alt to avoid console switch
+#    setkey 0x8 0x6a 0xf603
+#    setkey 0x8 0x69 0xf603
+    setkey 0x0 0x38 0x0
+
+	chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+	chown bluetooth bluetooth /proc/bluetooth/sleep/proto
+	chown system system /sys/module/sco/parameters/disable_esco
+	chmod 0660 /sys/module/bluetooth_power/parameters/power
+    chmod 0660 /sys/class/rfkill/rfkill0/state
+	chmod 0660 /proc/bluetooth/sleep/proto
+	chown bluetooth bluetooth /dev/ttyHS0
+	chmod 0660 /dev/ttyHS0
+	chmod 0666 /dev/msm_snd
+# /* LGE_CHANGE_S [kiwone.seo@lge.com] 2010-02-03, LG_FW_AUDIO_PWM_VIBRATOR */
+	chmod 0666 /sys/devices/platform/android-vibrator/enable
+	chmod 0666 /sys/devices/platform/android-vibrator/amp
+    chmod 0666 /sys/class/timed_output/vibrator/amp
+# /* LGE_CHANGE_E [kiwone.seo@lge.com] 2010-02-03, LG_FW_AUDIO_PWM_VIBRATOR */   
+	chmod 0666 /sys/devices/platform/lg_diag_cmd/sms_status
+	chmod 0666 /sys/devices/platform/lg_diag_cmd/get_sms
+	chmod 0666 /sys/devices/platform/lg_diag_cmd/set_sms
+	chmod 0666 /sys/devices/platform/lg_diag_cmd/rsp_sms_status
+	chmod 0666 /sys/devices/platform/lg_diag_cmd/rsp_get_sms
+	chmod 0666 /sys/devices/platform/lg_diag_cmd/rsp_set_sms
+	mkdir /data/radio 0770 radio radio
+	chown system radio /dev/rtc1
+	chmod 0660 radio /dev/rtc1
+## USB
+	chmod 0666 /sys/devices/platform/msm_hsusb_periphera/composition
+
+	chown system graphics /dev/hw3d
+	chmod 0660 /dev/hw3d
+	chown root root /dev/kgsl
+	chmod 0666 /dev/kgsl
+	chmod 0666 /dev/pmem
+	chown system graphics /dev/pmem_gpu
+	chmod 0666 /dev/pmem_gpu
+	chown system graphics /dev/pmem_gpu1
+	chmod 0666 /dev/pmem_gpu1
+	chown system audio /dev/msm_aac
+	chmod 0660 /dev/msm_aac
+	chown system audio /dev/msm_amrnb_in
+	chmod 0660 /dev/msm_amrnb_in
+	chown system audio /dev/msm_amrnb
+	chmod 0660 /dev/msm_amrnb
+	chown system audio /dev/msm_qcelp
+	chmod 0660 /dev/msm_qcelp
+	chown system audio /dev/msm_evrc
+	chmod 0660 /dev/msm_evrc
+	chown system audio /dev/msm_voicememo
+	chmod 0660 /dev/msm_voicememo
+	chown system graphics /dev/msm_rotator
+	chmod 0660 /dev/msm_rotator
+	chown system audio /dev/msm_preproc_ctl
+	chmod 0660 /dev/msm_preproc_ctl
+
+	chmod 0666 /dev/graphics/fb0
+	chmod 0666 /sys/class/leds/lcd-backlight/alc
+
+#SENSOR - revc
+	chown system system /dev/akm8973_daemon
+	chown system system /dev/akm8973_aot
+	chown system system /dev/KR3DH
+	chmod 0666 /dev/akm8973_aot
+	chmod 0666 /dev/KR3DH
+	chmod 0666 /sys/bus/i2c/drivers/proximity_gp2ap/4-0044/enable
+#SENSOR - revb
+	chmod 0666 dev/ami602
+	chmod 0666 dev/ami602mid
+
+	chown system system /dev/system_bus_freq
+	chmod 0660 /dev/system_bus_freq
+	chown system system /dev/cpu_dma_latency
+	chmod 0660 /dev/cpu_dma_latency
+## WIFI  #changed gnm
+	#chown system misc /data/misc/wifi
+	#chmod 0771 /data/misc/wifi
+	#mkdir /data/misc/wifi/sockets 0777 root root
+	#mkdir /data/disk 0777 system system
+   	
+	#mkdir /data/misc/wifi/sockets 0770 wifi wifi
+    	#setprop wifi.supplicant_scan_interval 20
+    	#setprop wifi.interface wlan0
+	mkdir /data/disk 0777 system system
+##EXTRAS MOVED FROM INIT.rc GNM
+	chmod 0666 /sys/class/leds/lcd-backlight/brightness
+	chown system system /sys/class/leds/green/device/grpfreq
+    	chown system system /sys/class/leds/green/device/grppwm
+    	chown system system /sys/class/leds/green/device/blink
+    	chown system system /sys/class/leds/blue/brightness
+    	chown system system /sys/class/leds/blue/device/grpfreq
+    	chown system system /sys/class/leds/blue/device/grppwm
+    	chown system system /sys/class/leds/blue/device/blink
+	#lcd test
+	chown system system /sys/devices/platform/lcdc_lgit_wvga.1/enable
+	chmod 0666 /sys/devices/platform/lcdc_lgit_wvga.1/enable
+	chmod 0666 /sys/devices/platform/i2c-gpio.7/i2c-adapter/i2c-7/7-0044/enable
+	chmod 0666 /sys/devices/platform/i2c-gpio.7/i2c-adapter/i2c-7/7-0044/show
+#alc test
+	chown system system /sys/class/leds/lcd-backlight/mode
+	chmod 0666 /sys/class/leds/lcd-backlight/mode
+#camera flash
+	chmod 0666 /sys/class/leds/spotlight/brightness
+	chown system system /sys/class/leds/spotlight/brightness
+    	chmod 0666 /sys/class/timed_output/flash/enable
+    	chown system system /sys/class/timed_output/flash/enable
+#fix perms
+	chown root system /system/bin/iptables
+        chmod 4550 /system/bin/iptables
+# fix su perms GNM
+	chown root root /system/bin/su
+    	chmod 06755 /system/bin/su
+
+## VPN
+	chown system system /data/misc/vpn
+	chmod 0771 /data/misc/vpn
+	chown system system /data/misc/vpn/profiles
+	chmod 0771 /data/misc/vpn/profiles
+
+## DHCP
+	mkdir /data/misc/dhcp 0777 system system
+
+# Collect ramconsole data
+	copy /proc/last_kmsg /data/dontpanic/last_kmsg
+	chown root log /data/dontpanic/last_kmsg
+	chmod 0640 /data/dontpanic/last_kmsg
+
+on property:init.svc.hcid=running
+	write /sys/devices/virtual/bluetooth/hci0/idle_timeout 7000
+
+# LG_FW_AUDIO_BROADCOM_BT , not used below lines
+# service hci_qcomm_init /system/bin/log -t qcom-bluetooth -p i "hci_qcomm_init service requested"
+#    user bluetooth
+#    group bluetooth net_bt_admin
+#    disabled
+#    oneshot
+
+# +++ BRCM +++
+# Make sure we startup btld before bluetoothd
+# Set target address to emulator host loopback IF
+# Limit baudrate to 460800 to ensure reliable uart operation
+
+## btld & bluetoothd disabled for debugging BT GNM
+#service btld /system/bin/logwrapper /system/bin/btld -pf /system/bin/BCM4329B1_002.002.023.0313.0333.hcd -hb 4000000 -lpm 1
+#    user root			
+#    group bluetooth net_bt_admin			
+#    disabled			
+#    oneshot			
+				
+#service bluetoothd /system/bin/bluetoothd -n			
+#    socket bluetooth stream 660 bluetooth bluetooth			
+#    socket dbus_bluetooth stream 660 bluetooth bluetooth			
+#    # init.rc does not yet support applying capabilities, so run as root and			
+#    # let bluetoothd drop uid to bluetooth with the right linux capabilities			
+#    group bluetooth net_bt_admin misc			
+#    disabled			
+
+# service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
+#    user bluetooth
+#    group qcom_oncrpc bluetooth net_bt_admin
+#    disabled
+#    oneshot
+
+# service hcid /system/bin/hcid -s -n -f /etc/bluez/hcid.conf
+#    socket bluetooth stream 660 bluetooth bluetooth
+#    socket dbus_bluetooth stream 660 bluetooth bluetooth
+#    # init.rc does not yet support applying capabilities, so run as root and
+#    # let hcid drop uid to bluetooth with the right linux capabilities
+#   group bluetooth net_bt_admin misc
+#    disabled
+
+# service hfag /system/bin/sdptool add --channel=10 HFAG
+#    user bluetooth
+#    group bluetooth net_bt_admin
+#    disabled
+#    oneshot
+
+# service hsag /system/bin/sdptool add --channel=11 HSAG
+#    user bluetooth
+#    group bluetooth net_bt_admin
+#    disabled
+#    oneshot
+# --- BRCM ---
+
+#Disabled for debugging GNM
+# Keeps Pid Exiting to do find fix
+#service cnd /system/bin/cnd
+#    socket cnd stream 660 root radio
+#    socket cne stream 660 root radio
+
+## WIFI
+service wpa_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant -Dwext -iwlan0 -c/data/misc/wifi/wpa_supplicant.conf #-dd
+        disabled
+        oneshot
+
+service dhcpcd /system/bin/dhcpcd -B wlan0
+        disabled
+        oneshot
+
+on property:init.svc.wpa_supplicant=stopped
+	stop dhcpcd
+
+#Disabled for debugging GNM
+service qmuxd /system/bin/qmuxd 
+
+#service keypress /system/bin/handset-keypress
+
+## USB
+#service port-bridge /system/bin/port-bridge /dev/smd0 /dev/ttyGS0 
+service port-bridge /system/bin/port-bridge /dev/smd0 /dev/ttyHSUSB0
+
+#Disabled for debugging GNM
+service akmd2 /system/bin/akmd2
+
+#Disabled for debugging GNM
+service dhcp-service /system/bin/netcfg eth0 dhcp
+	oneshot
+
+# commented out for debugging GNM restore in release
+# /* LGE_BootTime [taesu84.kim@lge.com] 2010-03-17, LG_Decrease_BootTime */
+service qcom-post-boot /system/bin/sh /init.qcom.post_boot.sh
+	user root
+	disabled
+	oneshot
+
+Disabled for Debugging GNM
+on property:dev.bootcomplete=1
+	stop dhcp-service
+	start dhcp-service
+	start qcom-post-boot
+
+# bugreport is triggered by the KEY_LEFTSHIFT and KEY_MENU keycodes
+service bugreport /system/bin/logwrapper /system/bin/dumpstate -d -v -o /sdcard/bugreports/bugreport
+	disabled
+	oneshot
+	keycodes 42 139
+
+# lge_erc_rpc is not included GNM
+## LGE_CHANGE_S [jihoon.lee@lge.com] 2010-02-03, LG_FW_ERS 
+##if defined (CONFIG_MACH_MSM7X27_ALOHAV) || defined (LG_FW_ERS)
+#BEGIN 0003856 sh.kwon@lge.com 2010-01-21
+#ADD 0003856: [ERS] change policy ers rpc daemon runing if build type is user, eng
+#service lge_ers_rpcd /system/bin/lge_ers_rpcd
+#	oneshot
+#on property:ro.build.type=userdebug
+#	stop lge_ers_rpcd
+#    start lge_ers_rpcd
+#on property:ro.build.type=eng
+#	stop lge_ers_rpcd
+#    start lge_ers_rpcd
+##endif /*LG_FW_ERS*/
+#END 0003290 sh.kwon@lge.com 2010-01-21
+## LGE_CHANGE_E [jihoon.lee@lge.com] 2010-02-03, LG_FW_ERS 
+
+service tsdown  /system/bin/tsdown
+    user root
+    group root
+    oneshot
+
+# GNM this makes it work finally 4000000 doesnt work
+service hciattach /system/bin/brcm_patchram_plus --enable_hci --baudrate 3000000 --patchram /system/bin/BCM4329B1_002.002.023.0313.0333.hcd /dev/ttyHS0
+    user bluetooth
+    group bluetooth net_bt_admin
+    disabled
+

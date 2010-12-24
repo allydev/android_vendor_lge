@@ -1,0 +1,42 @@
+#
+# system.prop
+#
+rild.libpath=/system/lib/libril-qc-1.so
+rild.libargs=-d /dev/smd0
+persist.rild.nitz_plmn=
+persist.rild.nitz_long_ons_0=
+persist.rild.nitz_long_ons_1=
+persist.rild.nitz_long_ons_2=
+persist.rild.nitz_long_ons_3=
+persist.rild.nitz_short_ons_0=
+persist.rild.nitz_short_ons_1=
+persist.rild.nitz_short_ons_2=
+persist.rild.nitz_short_ons_3=
+DEVICE_PROVISIONED=1
+debug.sf.hw=1
+dalvik.vm.heapsize=24m
+dalvik.vm.dexopt-flags=m=y
+dalvik.vm.execution-mode=int:jit
+# WVGA
+ro.sf.lcd_density=240
+ro.sf.hw_lcd_density=240
+# Touch Key, hopemini@lge.com, 2009-12-10
+# SEARCH, BACK, HOME, MENU, CALL, END
+ro.lge.touchkey=BACK|SEARCH
+net.tcp.buffersize.evdo=5840,46720,93440,5840,23360,93440
+net.tcp.buffersize.1xrtt=5840,46720,58400,5840,23360,58400
+net.tcp.buffersize.cdma=5840,46720,58400,5840,23360,58400
+ro.cdma.home.operator.numeric=310004
+ro.cdma.home.operator.alpha=Verizon
+ro.opengles.version=131072
+ro.media.enc.file.format       = 3gp,mp4
+ro.media.enc.vid.codec         = m4v,h263
+ro.media.enc.vid.h263.width    = 176,800
+ro.media.enc.vid.h263.height   = 144,480
+ro.media.enc.vid.h263.bps      = 64000,1600000
+ro.media.enc.vid.h263.fps      = 1,30
+ro.media.enc.vid.m4v.width     = 176,800
+ro.media.enc.vid.m4v.height    = 144,480
+ro.media.enc.vid.m4v.bps       = 64000,1600000
+ro.media.enc.vid.m4v.fps       = 1,30
+
