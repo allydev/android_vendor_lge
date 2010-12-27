@@ -226,7 +226,8 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/bootimages/VZW_open_480x800_00020.rle:root/bootimages/VZW_open_480x800_00020.rle \
 	$(LOCAL_PATH)/bootimages/VZW_open_480x800_00021.rle:root/bootimages/VZW_open_480x800_00021.rle \
 	$(LOCAL_PATH)/bootimages/VZW_open_480x800_00022.rle:root/bootimages/VZW_open_480x800_00022.rle \
-	$(LOCAL_PATH)/init.rc:root/init.rc
+	$(LOCAL_PATH)/init.rc:root/init.rc \
+	$(LOCAL_PATH)/init.qcom.post_boot.sh:root/init.qcom.post_boot.sh
 
 
 

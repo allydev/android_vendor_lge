@@ -20,8 +20,9 @@ PRODUCT_PACKAGES := \
     IM \
     VoiceDialer \
     NotePad \
-    librs_jni 
-    
+    librs_jni \
+    Snake 
+        
 DEVICE_PACKAGE_OVERLAYS := vendor/lge/aloha/overlay
 
 # aloha uses high-density artwork where available
@@ -132,13 +133,43 @@ PRODUCT_COPY_FILES := \
 	vendor/lge/aloha/proprietary/lib/libloc-rpc.so:system/lib/libloc-rpc.so \
 	vendor/lge/aloha/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl \
 	vendor/lge/aloha/proprietary/lib/libomx_wmadec_sharedlibrary.so:system/lib/libomx_wmadec_sharedlibrary.so \
-	vendor/lge/aloha/proprietary/lib/libomx_wmvdec_sharedlibrary.so:system/lib/libomx_wmvdec_sharedlibrary.so 
+	vendor/lge/aloha/proprietary/lib/libomx_wmvdec_sharedlibrary.so:system/lib/libomx_wmvdec_sharedlibrary.so \
+	vendor/lge/aloha/proprietary/codecs/libOmxAacDec.so:system/lib/libOmxAacDec.so \
+	vendor/lge/aloha/proprietary/codecs/libOmxAacEnc.so:system/lib/libOmxAacEnc.so \
+	vendor/lge/aloha/proprietary/codecs/libOmxAmrDec.so:system/lib/libOmxAmrDec.so \
+	vendor/lge/aloha/proprietary/codecs/libOmxAmrEnc.so:system/lib/libOmxAmrEnc.so \
+	vendor/lge/aloha/proprietary/codecs/libOmxAmrRtpDec.so:system/lib/libOmxAmrRtpDec.so \
+	vendor/lge/aloha/proprietary/codecs/libOmxAmrwbDec.so:system/lib/libOmxAmrwbDec.so \
+	vendor/lge/aloha/proprietary/codecs/libOmxEvrcDec.so:system/lib/libOmxEvrcDec.so \
+	vendor/lge/aloha/proprietary/codecs/libOmxEvrcEnc.so:system/lib/libOmxEvrcEnc.so \
+	vendor/lge/aloha/proprietary/codecs/libOmxH264Dec.so:system/lib/libOmxH264Dec.so \
+	vendor/lge/aloha/proprietary/codecs/libOmxMpeg4Dec.so:system/lib/libOmxMpeg4Dec.so \
+	vendor/lge/aloha/proprietary/codecs/libOmxQcelp13Enc.so:system/lib/libOmxQcelp13Enc.so \
+	vendor/lge/aloha/proprietary/codecs/libOmxQcelpDec.so:system/lib/libOmxQcelpDec.so \
+	vendor/lge/aloha/proprietary/codecs/libOmxVidEnc.so:system/lib/libOmxVidEnc.so \
+	vendor/lge/aloha/proprietary/codecs/libOmxWmaDec.so:system/lib/libOmxWmaDec.so \
+	vendor/lge/aloha/proprietary/codecs/libOmxWmvDec.so:system/lib/libOmxWmvDec.so \
+	vendor/lge/aloha/proprietary/codecs/libOmxMp3Dec.so:system/lib/libOmxMp3Dec.so \
+	vendor/lge/aloha/loc_parameter.ini:system/etc/loc_parameter.ini \
+	vendor/lge/aloha/proprietary/lib/libcamera.so:obj/lib/libcamera.so \
+   	vendor/lge/aloha/proprietary/lib/libcamera.so:system/lib/libcamera.so \
+   	vendor/lge/aloha/proprietary/lib/liboemcamera.so:system/lib/liboemcamera.so \
+   	vendor/lge/aloha/proprietary/lib/libmm-abl.so:system/lib/libmm-abl.so \
+   	vendor/lge/aloha/proprietary/lib/libmmipl.so:system/lib/libmmipl.so \
+   	vendor/lge/aloha/proprietary/lib/libmmjpeg.so:system/lib/libmmjpeg.so 	
 
+
+
+
+include frameworks/base/data/sounds/OriginalAudio.mk
 
 $(call inherit-product, build/target/product/generic.mk)
 
-PRODUCT_BRAND := lg
+PRODUCT_BRAND := verizon
 PRODUCT_NAME := aloha_generic
 PRODUCT_DEVICE := aloha
-PRODUCT_MODEL := Lge Ally
+PRODUCT_MODEL := Ally
+PRODUCT_LOCALE_LANGUAGE := en
+PRODUCT_LOCALE_REGION := US
+PRODUCT_MANUFACTURER := LGE
 
